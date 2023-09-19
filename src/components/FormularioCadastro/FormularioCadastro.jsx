@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import { Button, TextField, Switch, FormControlLabel } from "@mui/material";
 
 
-function FormularioCadastro({aoEnviar}){
+function FormularioCadastro({aoEnviar, validarCPF}){
     const [nome, setNome] = useState("Leandro");
     const [sobrenome, setSobrenome] = useState("");
     const [cpf, setCpf] = useState("");
@@ -13,7 +13,7 @@ function FormularioCadastro({aoEnviar}){
         <form onSubmit={(event) => {event.preventDefault(); aoEnviar({nome, sobrenome, cpf, novidades, promocoes});}}>
             <TextField value={nome} onChange={event => { setNome(event.target.value); }} id="nome" label="Nome" variant="outlined" margin="normal" fullWidth />
             <TextField value={sobrenome} onChange={event => {setSobrenome(event.target.value); }} id="sobrenome" label="Sobrenome" variant="outlined" margin="normal" fullWidth />
-            <TextField value={cpf} onChange={event => {setCpf(event.target.value); }} onBlur={(event) => {setErros({cpf:{valido:false, texto:"CPF deve ter 11 digitos"}})}} error={!erros.cpf.valido} helperText={erros.cpf.texto} id="cpf" label="CPF" variant="outlined" margin="normal" fullWidth />
+            <TextField value={cpf} onChange={event => {setCpf(event.target.value); }} onBlur={(event) =>{const ehValido = validarCPF(cpf); setErros({cpf:ehValido})}} error={!erros.cpf.valido} helperText={erros.cpf.texto} id="cpf" label="CPF" variant="outlined" margin="normal" fullWidth />
 
             <FormControlLabel label="Promoções" control={<Switch checked={promocoes} onChange={(event) =>{
                 setPromocoes(event.target.checked)
