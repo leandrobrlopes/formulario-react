@@ -3,7 +3,7 @@ import { Button, TextField, Switch, FormControlLabel } from "@mui/material";
 
 
 function DadosPessoais({aoEnviar, validarCPF}){
-    const [nome, setNome] = useState("Leandro");
+    const [nome, setNome] = useState("");
     const [sobrenome, setSobrenome] = useState("");
     const [cpf, setCpf] = useState("");
     const [promocoes, setPromocoes] = useState(true);
